@@ -36,5 +36,7 @@ MonoBehaviour:
   - RespawnSpaceship
   - ClearPlayerListing
   - ListPlayer
+  - AddPlayers
+  - TempFun
   DisableAutoOpenWizard: 1
   ShowSettings: 1
