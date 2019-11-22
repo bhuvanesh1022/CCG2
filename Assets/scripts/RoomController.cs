@@ -17,7 +17,7 @@ public class RoomController : MonoBehaviourPunCallbacks
     public PhotonView photon;
     bool Isenter;
     private GameObject Templisting;
-
+    public bool IsEnable;
     void Awake() {
         if (roomController == null) {
             roomController = this;
@@ -75,6 +75,18 @@ public class RoomController : MonoBehaviourPunCallbacks
     }
     //
     public void StartGame() {
-        SceneManager.LoadScene("GamePlay");
+
+        photonView.RPC("TempFun",RpcTarget.AllBuffered,null);
     }
+    public void LoadScene() {
+        if (IsEnable) {
+            PhotonNetwork.LoadLevel(1);
+        }
     }
+    [PunRPC]
+   public void TempFun() {
+        IsEnable = true;
+        LoadScene();
+    }
+    
+}
