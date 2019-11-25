@@ -38,6 +38,7 @@ public class PlayerInst : MonoBehaviourPunCallbacks,IPunObservable {
     }
 
     public void PlayerDetails() {
+
         if (!PlayerController.playerController.PlayerNames.Contains(userName)) {
             PlayerController.playerController.PlayerNames.Add(userName);
         }
