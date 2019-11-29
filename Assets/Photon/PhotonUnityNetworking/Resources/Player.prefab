@@ -218,7 +218,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -287,7 +287,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1065975346}
-    characterCount: 2
+    characterCount: 1
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -503,6 +503,7 @@ GameObject:
   - component: {fileID: -854900114198931425}
   - component: {fileID: -2971344702700141566}
   - component: {fileID: 724364905588597095}
+  - component: {fileID: 5748267405866267607}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -560,8 +561,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ce473cf2dcb774ea1291693e28ae54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PC: {fileID: 0}
   User_NameTxt: {fileID: 329138036}
   UserName: 
+  Healthtxt: {fileID: 1065975346}
 --- !u!114 &724364905588597095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,3 +580,23 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!114 &5748267405866267607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3130021720018565571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c78055247e02a8479512893a001bb5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Iscalculating: 0
+  health: 0
+  Opponentbetted: 0
+  _IsvalueChangedToPlayer: 0
+  _IsValueChanged: 0
+  _IsNothingChanged: 0
+  _IsNotChanged: 0
+  _IsWin: 0

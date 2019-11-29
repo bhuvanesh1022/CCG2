@@ -43,7 +43,7 @@ public class RoomController : MonoBehaviourPunCallbacks
         if (!Isenter) {
             EnterBtn.SetActive(true);
         }
-        print("Entered-");
+        print("Entered-");     
     }
     public override void OnPlayerLeftRoom(Player otherPlayer) {
         print("Left-");
@@ -58,6 +58,10 @@ public class RoomController : MonoBehaviourPunCallbacks
         Isenter = true;
         photon.RPC("ClearPlayerListing",RpcTarget.All);
         photon.RPC("ListPlayer", RpcTarget.All);
+
+        if (PhotonNetwork.CountOfPlayersInRooms == -1)// Index identify
+            return;
+        Mastermanager._gamesettings.playerenteredindex = PhotonNetwork.CountOfPlayersInRooms;
     }
     [PunRPC]
     void ClearPlayerListing() {
@@ -75,7 +79,7 @@ public class RoomController : MonoBehaviourPunCallbacks
     }
     //
     public void StartGame() {
-
+        
         photonView.RPC("TempFun",RpcTarget.AllBuffered,null);
     }
     public void LoadScene() {

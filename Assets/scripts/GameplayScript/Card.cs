@@ -14,8 +14,9 @@ public class Card : MonoBehaviourPunCallbacks,IPunObservable {
     public TextMeshProUGUI Cardattribute_name;
 
     public bool iscollided;
-    public bool initBool;
-   // public bool IsshowText;
+    public bool initBool,Sprite_Disable;
+    // public bool IsshowText;
+
     public bool IsplaceCard;// hit card
     void Start() {
         initBool = true;
@@ -27,9 +28,10 @@ public class Card : MonoBehaviourPunCallbacks,IPunObservable {
         photonView.RPC("Addcard", RpcTarget.AllBuffered, null);
     }
     private void Update() {
-       // gamestart();
+        gamestart();
         CardShow();
         CardVisible();
+        Enable_SpriteFun();
     }
     void Script_Refresh() {
         if (PlayerController.playerController == null) {
@@ -53,6 +55,7 @@ public class Card : MonoBehaviourPunCallbacks,IPunObservable {
     void CardShow() {
         Script_Refresh();
         if (!photonView.IsMine && IsplaceCard) {
+            gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = 2;
             transform.localScale = PlayerController.playerController.cellscale;
             transform.position = PlayerController.playerController.cardplaceposition[1].transform.position;
 
@@ -69,6 +72,7 @@ public class Card : MonoBehaviourPunCallbacks,IPunObservable {
             if (CardShowvalues) {
                 gameObject.GetComponentInChildren<SpriteRenderer>().sprite = PlayerController.playerController.coveredsprite[0];
                 gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = 1;
+               
             }
 
         }
@@ -92,8 +96,8 @@ public class Card : MonoBehaviourPunCallbacks,IPunObservable {
     // 
     void Attributes()
         {
-        if (photonView.IsMine && initBool)  {
-            Cardattribute_name.text = CardAttributes[CardValue - 1];
+        if (photonView.IsMine)  {
+            Cardattribute_name.text = CardAttributes[CardValue - 1];          
             initBool = false;
         }
       
@@ -114,7 +118,7 @@ public class Card : MonoBehaviourPunCallbacks,IPunObservable {
             return;
         }
         PlayerController.playerController.placedcardlist.Add(gameObject);
-
+        IsplaceCard = true;
     }
     //triggering it
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -131,12 +135,13 @@ public class Card : MonoBehaviourPunCallbacks,IPunObservable {
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.gameObject.tag == "Table") {
             iscollided = false;
+           
         }
     }
 
     //-------Card drag------
     private void OnMouseDrag() {
-       // Script_Refresh();
+        Script_Refresh();
         if (photonView.IsMine ) {
         print("drag-------");
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -145,7 +150,7 @@ public class Card : MonoBehaviourPunCallbacks,IPunObservable {
        }
     }
     private void OnMouseDown() {
-      //  Script_Refresh();
+        Script_Refresh();
        if (photonView.IsMine) {
         print("hjuf-------");
         Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -155,7 +160,7 @@ public class Card : MonoBehaviourPunCallbacks,IPunObservable {
 
     }
     private void OnMouseUp() {
-       // Script_Refresh();
+        Script_Refresh();
        
             transform.position = startpos;
             IsplaceCard = false;
@@ -164,14 +169,20 @@ public class Card : MonoBehaviourPunCallbacks,IPunObservable {
             if (iscollided) {          
             gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = 2;
             if (photonView.IsMine) {
+                Sprite_Disable = true;
                 transform.position= PlayerController.playerController.cardplaceposition[0].transform.position;
+                transform.localScale = PlayerController.playerController.cellscale;               
             }
-            IsplaceCard = true;
+
             photonView.RPC("Addplacedcard", RpcTarget.AllBuffered, null);
 
         }
+    }
 
-
+    void Enable_SpriteFun() {
+        if (Sprite_Disable) {
+            gameObject.GetComponentInChildren<BoxCollider2D>().enabled = false;
+        }
     }
 
    
@@ -179,28 +190,35 @@ public class Card : MonoBehaviourPunCallbacks,IPunObservable {
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         if (stream.IsWriting) {
+            //stream.SendNext(PlayerController.playerController.cardcount);
+            
+            stream.SendNext(Sprite_Disable);
             stream.SendNext(Whichplayer);
             stream.SendNext(iscollided);
             stream.SendNext(CardValue);
-            stream.SendNext(this.gameObject.name);
+            stream.SendNext(transform.position);
+            stream.SendNext(gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder);
             stream.SendNext(IsplaceCard);
             stream.SendNext(CardShowvalues);
             stream.SendNext(initBool);
 
-            if (iscollided && CardShowvalues) {
+            if ( CardShowvalues) {
                 stream.SendNext(Cardattribute_name.text);//dis
             }
         }
         else if (stream.IsReading) {
+            // PlayerController.playerController.cardcount = (int)stream.ReceiveNext();
+            Sprite_Disable = (bool)stream.ReceiveNext();
             Whichplayer = (int)stream.ReceiveNext();
             iscollided = (bool)stream.ReceiveNext();
             CardValue = (int)stream.ReceiveNext();
-            this.gameObject.name = (string)stream.ReceiveNext();
+            transform.position = (Vector3)stream.ReceiveNext();
+           gameObject.GetComponentInChildren<SpriteRenderer>().sortingOrder = (int)stream.ReceiveNext();
             IsplaceCard = (bool)stream.ReceiveNext();
             CardShowvalues = (bool)stream.ReceiveNext();
             initBool = (bool)stream.ReceiveNext();
 
-            if (iscollided && CardShowvalues) {
+            if ( CardShowvalues) {
                 Cardattribute_name.text = (string)stream.ReceiveNext();//dis
             }
         }
