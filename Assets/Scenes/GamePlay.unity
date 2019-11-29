@@ -1745,9 +1745,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675d9de513c27734aba64b7df68528f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PC: {fileID: 0}
   iswagebetted: 0
+  _IsWageVisualBet: 0
   Wagetobet: 0
   Wagevalue: 0
+  maxwage: 0
 --- !u!114 &466435377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2560,7 +2563,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Special card
+  m_Text: Win Ties
 --- !u!222 &694862882
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3028,6 +3031,8 @@ GameObject:
   - component: {fileID: 841872575}
   - component: {fileID: 841872576}
   - component: {fileID: 841872577}
+  - component: {fileID: 841872578}
+  - component: {fileID: 841872579}
   m_Layer: 0
   m_Name: Bet
   m_TagString: Bet
@@ -3111,9 +3116,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675d9de513c27734aba64b7df68528f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PC: {fileID: 0}
   iswagebetted: 0
+  _IsWageVisualBet: 0
   Wagetobet: 0
   Wagevalue: 0
+  maxwage: 0
 --- !u!114 &841872577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3136,6 +3144,53 @@ MonoBehaviour:
   viewIdField: 2
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!61 &841872578
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841872573}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.48, y: 0.48}
+    newSize: {x: 0.5, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.48, y: 0.48}
+  m_EdgeRadius: 0
+--- !u!50 &841872579
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841872573}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &845985219
 GameObject:
   m_ObjectHideFlags: 0
@@ -3698,6 +3753,85 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &960262909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 960262910}
+  - component: {fileID: 960262912}
+  - component: {fileID: 960262911}
+  m_Layer: 0
+  m_Name: Special Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &960262910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960262909}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.875478, y: 18.966179, z: -14.322287}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &960262911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960262909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d59948aeacf7542b4551ba4dbd958d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SPC: {fileID: 0}
+  PC: {fileID: 0}
+  WM: {fileID: 0}
+  SplNum: 0
+  IsSpecialNotVal: 0
+  IsClicked: 0
+  _SpecialCardApplied: 0
+  _SpecialCardActive: 0
+  _ISSameAndSpecial: 0
+  _IsSpecialCalculating: 0
+  _IsspecialApplied: 0
+  _IsSpecialVisual: 0
+  _ISdiffspecialActive: 0
+--- !u!114 &960262912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960262909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 6
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1039066137
 GameObject:
   m_ObjectHideFlags: 0
@@ -3759,14 +3893,14 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 14
-    m_MaxSize: 16
+    m_MaxSize: 15
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Special card
+  m_Text: Life Steel
 --- !u!222 &1039066140
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4138,7 +4272,7 @@ GameObject:
   - component: {fileID: 1184564899}
   - component: {fileID: 1184564898}
   m_Layer: 5
-  m_Name: Opponent Special Card
+  m_Name: Opponent Special Card-Life steel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4162,7 +4296,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -32, y: 47.9}
+  m_AnchoredPosition: {x: -32, y: 45.5}
   m_SizeDelta: {x: 66.015625, y: 85.15625}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1184564898
@@ -4254,13 +4388,16 @@ GameObject:
   m_Component:
   - component: {fileID: 1185906484}
   - component: {fileID: 1185906485}
+  - component: {fileID: 1185906486}
+  - component: {fileID: 1185906487}
+  - component: {fileID: 1185906488}
   m_Layer: 0
   m_Name: Special Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1185906484
 Transform:
   m_ObjectHideFlags: 0
@@ -4325,6 +4462,79 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1185906486
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185906483}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.5416667, y: 0.69871795}
+    newSize: {x: 0.5416667, y: 0.69871795}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5416667, y: 0.69871795}
+  m_EdgeRadius: 0
+--- !u!114 &1185906487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185906483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d59948aeacf7542b4551ba4dbd958d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SPC: {fileID: 0}
+  PC: {fileID: 0}
+  WM: {fileID: 0}
+  SplNum: 0
+  IsSpecialNotVal: 0
+  IsClicked: 0
+  _SpecialCardApplied: 0
+  _SpecialCardActive: 0
+  _ISSameAndSpecial: 0
+  _IsSpecialCalculating: 0
+  _IsspecialApplied: 0
+  _IsSpecialVisual: 0
+  _ISdiffspecialActive: 0
+--- !u!114 &1185906488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185906483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 7
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1194945664
 GameObject:
   m_ObjectHideFlags: 0
@@ -4622,7 +4832,7 @@ GameObject:
   - component: {fileID: 1240023936}
   - component: {fileID: 1240023938}
   m_Layer: 5
-  m_Name: Special Card
+  m_Name: Special Card-WinTies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4646,7 +4856,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 30.599976, y: 43.4}
+  m_AnchoredPosition: {x: 30.599976, y: 41}
   m_SizeDelta: {x: 66.015625, y: 85.15625}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1240023936
@@ -5545,10 +5755,22 @@ MonoBehaviour:
   Incbtn: {fileID: 1745269499}
   DecBtn: {fileID: 466435371}
   WagesValue: 0
-  MaxWagesValue: 0
+  MaxWagesValue: 10
   betadjust: 0
   wagevaluetext: {fileID: 845985221}
   bettedtext: {fileID: 0}
+  ChipText: {fileID: 855539275}
+  HealthCnt: 0
+  WinName: 
+  _OpponentBetText: {fileID: 1842646437}
+  _NextTurn: 0
+  _SpecialBtn: {fileID: 1185906483}
+  _OpenentSpecialBtn: {fileID: 2146448930}
+  _Specials:
+  - {fileID: 1240023934}
+  - {fileID: 1184564896}
+  OpponentSpecial_Num: 0
+  MaxSpecialCount: 0
 --- !u!114 &1532669629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6353,9 +6575,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675d9de513c27734aba64b7df68528f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PC: {fileID: 0}
   iswagebetted: 0
+  _IsWageVisualBet: 0
   Wagetobet: 0
   Wagevalue: 0
+  maxwage: 0
 --- !u!114 &1745269505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6532,6 +6757,80 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1864218865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1864218866}
+  - component: {fileID: 1864218867}
+  - component: {fileID: 1864218868}
+  m_Layer: 0
+  m_Name: HealthManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1864218866
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864218865}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 225.37517, y: 181.03427, z: -45.68706}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1864218867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864218865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c78055247e02a8479512893a001bb5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Iscalculating: 0
+  health: 0
+  Opponentbetted: 0
+  _IsvalueChangedToPlayer: 0
+  _IsValueChanged: 0
+  _IsNothingChanged: 0
+  _IsNotChanged: 0
+  _IsWin: 0
+--- !u!114 &1864218868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864218865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 5
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1881892995
 GameObject:
   m_ObjectHideFlags: 0
@@ -7332,7 +7631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2146448931
 Transform:
   m_ObjectHideFlags: 0

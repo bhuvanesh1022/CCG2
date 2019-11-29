@@ -43,15 +43,36 @@ public class PlayerController : MonoBehaviour {
     public int betadjust;
     public TextMeshProUGUI wagevaluetext, bettedtext;
     public TextMeshProUGUI ChipText;
+    public int HealthCnt;
+    public string WinName;
+
+    public GameObject _OpponentBetText;
+
+    public bool _NextTurn;
     // public bool CardShowVal;
-
-
     // public int playerenteredindex;
 
+    //speacial button
+    public GameObject _SpecialBtn, _OpenentSpecialBtn;
+    public List<GameObject> _Specials = new List<GameObject>();
+    public int OpponentSpecial_Num,MaxSpecialCount;
+
     private void Start() {
+        Reload_btn.GetComponent<Button>().onClick.AddListener(Onclick_ReloadFun);
         playerInst();
         CardClone();
     }
+    // reload fun
+    void Onclick_ReloadFun() {
+        if (!PhotonNetwork.IsMasterClient) {
+            PhotonNetwork.LeaveRoom();
+            PhotonNetwork.LoadLevel(0);
+        }
+        else {
+            PhotonNetwork.LoadLevel(0);
+        }
+    }
+
     void playerInst() {
         PlayerObject = PhotonNetwork.Instantiate(playeref.name,new Vector3(0,0,0),Quaternion.identity);
 

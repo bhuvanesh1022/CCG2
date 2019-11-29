@@ -5,12 +5,16 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
-public class GameplayManager : MonoBehaviourPunCallbacks
+public class GameplayManager : MonoBehaviourPunCallbacks,IPunObservable
 {
     public static GameplayManager gameplaymanager;
+    public PlayerController PC;
 
     public TextMeshProUGUI User_NameTxt;
     public string UserName;
+
+    public TextMeshProUGUI Healthtxt;
+
 
     void Start()
     {
@@ -48,16 +52,22 @@ public class GameplayManager : MonoBehaviourPunCallbacks
             return;
         }
         PlayerController.playerController.playerlist.Add(gameObject);
-        print("playerlist." + PlayerController.playerController.playerlist.Count);
-
+       // print("playerlist." + PlayerController.playerController.playerlist.Count);
+    
     }
     // Playerdetails
     void playerDetails() {
+        Script_Refresh();
         if (photonView.IsMine) {
-            User_NameTxt.text = "You";
-           // UserName = photonView.Owner.NickName;
-           // this.gameObject.name = photonView.Owner.NickName; // display player name
-           // User_NameTxt.text = UserName;
+           // User_NameTxt.text = "You";
+            UserName = photonView.Owner.NickName;
+           this.gameObject.name = photonView.Owner.NickName; // display player name
+            User_NameTxt.text = UserName;
+            PlayerController.playerController.WagesValue = 0;
+            PlayerController.playerController.MaxWagesValue = 10;
+            Healthtxt.text = PlayerController.playerController.MaxWagesValue.ToString();
+
+
         }
         else {
             UserName = photonView.Owner.NickName;
@@ -65,5 +75,13 @@ public class GameplayManager : MonoBehaviourPunCallbacks
             User_NameTxt.text = UserName;
         }
     }
-   
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+        if (stream.IsWriting) {
+            stream.SendNext(UserName);
+        }
+        else if (stream.IsReading) {
+            UserName = (string)stream.ReceiveNext();
+        }
+        }
 }
